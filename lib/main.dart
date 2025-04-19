@@ -7,6 +7,8 @@ import 'screens/walkthrough/light_walkthrough_1.dart';
 import 'screens/walkthrough/light_walkthrough_2.dart';
 import 'screens/walkthrough/light_walkthrough_3.dart';
 import 'screens/loginRegister/let_You_In.dart';
+import 'screens/loginRegister/light_Sign_Up.dart';
+
 
 
 
@@ -36,6 +38,10 @@ class MyApp extends StatelessWidget {
         '/walkthrough2': (context) => Walkthrough2(),
         '/walkthrough3': (context) => Walkthrough3(),
         '/letYouIn': (context) =>  letYouIn(),
+        '/signUp': (context) =>  signUp(),
+
+
+
 
 
 

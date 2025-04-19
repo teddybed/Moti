@@ -321,8 +321,10 @@ class _LightSplashState extends State<letYouIn> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Add your Sign Up logic here or pass a function to handle it
-                          },
+
+                              // Navigate to the next page using the named route
+                              Navigator.pushNamed(context, '/signUp');
+                              },
                           child: Container(
                             width: 49,
                             height: 20,
