@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class Walkthrough2 extends StatefulWidget {
   @override
-  _Walkthrough1State createState() => _Walkthrough1State();
+  _Walkthrough2State createState() => _Walkthrough2State();
 }
 
-class _Walkthrough1State extends State<Walkthrough2> {
+class _Walkthrough2State extends State<Walkthrough2> {
   int _activeDotIndex = 0; // Active dot state
 
   // Set the active dot index
@@ -182,6 +182,7 @@ class _Walkthrough1State extends State<Walkthrough2> {
                       ),
                     ),
                   ),
+
                 ],
               ),
             ),

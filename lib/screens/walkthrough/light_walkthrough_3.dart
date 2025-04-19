@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class Walkthrough3 extends StatefulWidget {
   @override
-  _Walkthrough1State createState() => _Walkthrough1State();
+  _Walkthrough3State createState() => _Walkthrough3State();
 }
 
-class _Walkthrough1State extends State<Walkthrough3> {
+class _Walkthrough3State extends State<Walkthrough3> {
   int _activeDotIndex = 0; // Active dot state
 
   // Set the active dot index
@@ -158,7 +158,11 @@ class _Walkthrough1State extends State<Walkthrough3> {
                     width: 380,
                     height: 58,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Navigate to the next page using the named route
+                        Navigator.pushNamed(context, '/letYouIn');
+
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFF85F47),
                         shape: RoundedRectangleBorder(

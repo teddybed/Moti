@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LightSplash extends StatefulWidget {
@@ -33,6 +34,8 @@ class _LightSplashState extends State<LightSplash> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    // Set status bar icons to black
+
     final size = MediaQuery.of(context).size;
     final scaleX = size.width / 428.0;
     final scaleY = size.height / 926.0;
