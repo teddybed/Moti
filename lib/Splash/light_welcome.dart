@@ -11,7 +11,7 @@ class _LightWelcomeState extends State<LightWelcome> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/walkthrough1');
     });
   }
 
