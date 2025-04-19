@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'Splash/light_splash.dart';
+import 'screens/Splash/light_splash.dart';
 import 'screens/Splash/light_welcome.dart';
 import 'screens/walkthrough/light_walkthrough_1.dart';
 import 'screens/walkthrough/light_walkthrough_2.dart';
+import 'screens/walkthrough/light_walkthrough_3.dart';
+
 
 
 
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
         '/welcome': (context) => LightWelcome(),
         '/walkthrough1': (context) => Walkthrough1(),
         '/walkthrough2': (context) => Walkthrough2(),
+        '/walkthrough3': (context) => Walkthrough3(),
+
 
 
       },

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Walkthrough2 extends StatefulWidget {
+class Walkthrough3 extends StatefulWidget {
   @override
   _Walkthrough1State createState() => _Walkthrough1State();
 }
 
-class _Walkthrough1State extends State<Walkthrough2> {
+class _Walkthrough1State extends State<Walkthrough3> {
   int _activeDotIndex = 0; // Active dot state
 
   // Set the active dot index
@@ -27,12 +27,12 @@ class _Walkthrough1State extends State<Walkthrough2> {
         children: [
           // Image
           Positioned(
-            top: 164 * scaleX, // Adjusted to position the image
-            left: 42 * scaleY,
+            top: 196 * scaleX, // Adjusted to position the image
+            left: 78 * scaleY,
             child: Image.asset(
-              'assets/images/Vehicra.png',
-              width: 336 * scaleX,
-              height: 336 * scaleY,
+              'assets/images/49 - 3D Finance.png',
+              width: 302 * scaleX,
+              height: 302 * scaleY,
             ),
           ),
 
@@ -66,7 +66,7 @@ class _Walkthrough1State extends State<Walkthrough2> {
                       ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),  // Use bounds.width and bounds.height for dynamic sizing
                       blendMode: BlendMode.srcIn,
                       child: const Text(
-                        'Ride',
+                        'Pay',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Urbanist',
@@ -119,6 +119,17 @@ class _Walkthrough1State extends State<Walkthrough2> {
                       )
                       ,
 
+
+                      const SizedBox(width: 8), // Space between dots
+
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Color(0xFFE0E0E0), // Background color #E0E0E0
+                        ),
+                      ),
                       const SizedBox(width: 8), // Space between dots
                       Container(
                         width: 32,
@@ -137,16 +148,6 @@ class _Walkthrough1State extends State<Walkthrough2> {
                               : null,
                         ),
                       ),
-                      const SizedBox(width: 8), // Space between dots
-
-                      Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Color(0xFFE0E0E0), // Background color #E0E0E0
-                        ),
-                      ),
                     ],
                   ),
 
@@ -157,10 +158,7 @@ class _Walkthrough1State extends State<Walkthrough2> {
                     width: 380,
                     height: 58,
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Navigate to the next page using the named route
-                        Navigator.pushNamed(context, '/walkthrough3');
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFF85F47),
                         shape: RoundedRectangleBorder(
@@ -169,7 +167,7 @@ class _Walkthrough1State extends State<Walkthrough2> {
                         padding: EdgeInsets.symmetric(vertical: 18 * scaleY, horizontal: 16 * scaleX),
                       ),
                       child: const Text(
-                        'Next',
+                        'Get Started',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Urbanist',
