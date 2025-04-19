@@ -14,14 +14,15 @@ class _LightSplashState extends State<LightSplash> with SingleTickerProviderStat
   void initState() {
     super.initState();
 
+    // Navigate to welcome screen after 2 seconds
+    Timer(Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, '/welcome');
+    });
+
     _controller = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
     )..repeat();
-
-    Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
-    });
   }
 
   @override
