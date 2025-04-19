@@ -156,7 +156,10 @@ class _Walkthrough1State extends State<Walkthrough1> {
                     width: 380,
                     height: 58,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Navigate to the next page using the named route
+                        Navigator.pushNamed(context, '/walkthrough2');
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFF85F47),
                         shape: RoundedRectangleBorder(
@@ -178,6 +181,7 @@ class _Walkthrough1State extends State<Walkthrough1> {
                       ),
                     ),
                   ),
+
                 ],
               ),
             ),
