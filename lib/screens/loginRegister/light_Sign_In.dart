@@ -27,12 +27,12 @@ class Navbar extends StatelessWidget {
   }
 }
 
-class signUp extends StatefulWidget {
+class signIn extends StatefulWidget {
   @override
-  _signUpState createState() => _signUpState();
+  _signInState createState() => _signInState();
 }
 
-class _signUpState extends State<signUp> {
+class _signInState extends State<signIn> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
@@ -88,7 +88,7 @@ class _signUpState extends State<signUp> {
                       height: 38,
                       alignment: Alignment.center,
                       child: const Text(
-                        'Create New Account',
+                        'Login to your account',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Urbanist',
@@ -105,7 +105,7 @@ class _signUpState extends State<signUp> {
                     // Input Fields Container
                     Container(
                       width: 380,
-                      height: 340,
+                      height: 188,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8), // optional
                       ),
@@ -161,95 +161,7 @@ class _signUpState extends State<signUp> {
 
 
 
-                          // Email Input
-                          SizedBox(
-                            width: 380,
-                            height: 60,
-                            child: TextFormField(
-                              controller: _fullNameController,
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                filled: true,
-                                fillColor: Color(0xFFFAFAFA),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                                prefixIcon: Padding(
-                                  padding: EdgeInsets.only(top: 1.67, left: 3.33), // Adjusted position
-                                  child: Container(
-                                    width: 13.3330078125,  // Exact icon width
-                                    height: 16.6669921875, // Exact icon height
-                                    child: const Icon(
-                                      Icons.email,
-                                      color: Color(0xFF9E9E9E), // Icon color
-                                    ),
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                  borderSide: BorderSide.none,
-                                ),
-                                labelStyle: const TextStyle(
-                                  fontFamily: 'Urbanist',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  height: 1.4, // line-height equivalent in Flutter
-                                  letterSpacing: 0.2,
-                                  color: Color(0xFF9E9E9E),
-                                ),
-                              ),
-                              keyboardType: TextInputType.name,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your full name';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
 
-// Full Name Input
-                          SizedBox(
-                            width: 380,
-                            height: 60,
-                            child: TextFormField(
-                              controller: _fullNameController,
-                              decoration: InputDecoration(
-                                labelText: 'Full Name',
-                                filled: true,
-                                fillColor: Color(0xFFFAFAFA),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                                prefixIcon: Padding(
-                                  padding: EdgeInsets.only(top: 1.67, left: 3.33), // Adjusted position
-                                  child: Container(
-                                    width: 13.3330078125,  // Exact icon width
-                                    height: 16.6669921875, // Exact icon height
-                                    child: const Icon(
-                                      Icons.person,
-                                      color: Color(0xFF9E9E9E), // Icon color
-                                    ),
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                  borderSide: BorderSide.none,
-                                ),
-                                labelStyle: const TextStyle(
-                                  fontFamily: 'Urbanist',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  height: 1.4, // line-height equivalent in Flutter
-                                  letterSpacing: 0.2,
-                                  color: Color(0xFF9E9E9E),
-                                ),
-                              ),
-                              keyboardType: TextInputType.name,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your full name';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
 
 
                           Padding(
@@ -317,7 +229,7 @@ class _signUpState extends State<signUp> {
                                 padding: EdgeInsets.symmetric(vertical: 18 * scaleY, horizontal: 16 * scaleX),
                               ),
                               child: const Text(
-                                'Sign Up',
+                                'Sign In',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: 'Urbanist',
@@ -336,7 +248,7 @@ class _signUpState extends State<signUp> {
 
                     Container(
                       width: 380,
-                      height: 45,
+                      height: 137,
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -419,7 +331,7 @@ class _signUpState extends State<signUp> {
                       ),
                     ),
 
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 24),
 
                     // Don't have an account? Row
                     Container(
@@ -432,7 +344,7 @@ class _signUpState extends State<signUp> {
                             height: 20,
                             alignment: Alignment.centerRight,
                             child: const Text(
-                              "Already have an account? ",
+                              "Don't have an account? ",
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 fontFamily: 'Urbanist',
@@ -447,13 +359,13 @@ class _signUpState extends State<signUp> {
                           const SizedBox(width: 8), // Gap of 8px
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, '/signIn');
+                              Navigator.pushNamed(context, '/signUp');
                             },
                             child: Container(
                               height: 20,
                               alignment: Alignment.center,
                               child: const Text(
-                                "Sign In",
+                                "Sign Up",
                                 style: TextStyle(
                                   fontFamily: 'Urbanist',
                                   fontWeight: FontWeight.w600,

@@ -8,6 +8,8 @@ import 'screens/walkthrough/light_walkthrough_2.dart';
 import 'screens/walkthrough/light_walkthrough_3.dart';
 import 'screens/loginRegister/let_You_In.dart';
 import 'screens/loginRegister/light_Sign_Up.dart';
+import 'screens/loginRegister/light_Sign_In.dart';
+
 
 
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter 4 Page App',
+      title: 'MOTI',
       theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
@@ -39,6 +41,8 @@ class MyApp extends StatelessWidget {
         '/walkthrough3': (context) => Walkthrough3(),
         '/letYouIn': (context) =>  letYouIn(),
         '/signUp': (context) =>  signUp(),
+        '/signIn': (context) =>  signIn(),
+
 
 
 
