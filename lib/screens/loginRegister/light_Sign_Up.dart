@@ -308,6 +308,7 @@ class _signUpState extends State<signUp> {
                                 if (_formKey.currentState?.validate() ?? false) {
                                   // Proceed with sign-up process
                                 }
+                                Navigator.pushNamed(context, '/otp');
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFF85F47),

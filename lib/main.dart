@@ -9,6 +9,8 @@ import 'screens/walkthrough/light_walkthrough_3.dart';
 import 'screens/loginRegister/let_You_In.dart';
 import 'screens/loginRegister/light_Sign_Up.dart';
 import 'screens/loginRegister/light_Sign_In.dart';
+import 'screens/loginRegister/Light_OTP.dart';
+
 
 
 
@@ -42,6 +44,8 @@ class MyApp extends StatelessWidget {
         '/letYouIn': (context) =>  letYouIn(),
         '/signUp': (context) =>  signUp(),
         '/signIn': (context) =>  signIn(),
+        '/otp': (context) =>  Otp(),
+
 
 
 
