@@ -18,9 +18,7 @@ class Navbar extends StatelessWidget {
             onTap: onBack ?? () => Navigator.pop(context),
             child: const Icon(Icons.arrow_back, color: Colors.black),
           ),
-          const SizedBox(
-            width: 300,
-            height: 29,
+          const Expanded(
             child: Text(
               'OTP Code Verification',
               textAlign: TextAlign.center,
@@ -29,12 +27,11 @@ class Navbar extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 fontSize: 24,
                 height: 1.2,
-                letterSpacing: 0,
                 color: Color(0xFF212121),
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 24), // For symmetry
         ],
       ),
     );
@@ -49,7 +46,9 @@ class Otp extends StatefulWidget {
 }
 
 class _OtpState extends State<Otp> {
-  final List<TextEditingController> _controllers = List.generate(4, (_) => TextEditingController());
+  final List<TextEditingController> _controllers =
+  List.generate(4, (_) => TextEditingController());
+
   int _countdown = 55;
   late Timer _timer;
 
@@ -62,6 +61,9 @@ class _OtpState extends State<Otp> {
   @override
   void dispose() {
     _timer.cancel();
+    for (var c in _controllers) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -78,12 +80,10 @@ class _OtpState extends State<Otp> {
   }
 
   void _verifyOtp() {
-    final otp = _controllers.map((controller) => controller.text).join();
+    final otp = _controllers.map((c) => c.text).join();
     if (otp.length == 4) {
-      // Handle OTP verification
       print("OTP entered: $otp");
     } else {
-      // Show an error if OTP is incomplete
       print("Please enter a valid OTP.");
     }
   }
@@ -110,9 +110,8 @@ class _OtpState extends State<Otp> {
               const SizedBox(height: 60),
               const SizedBox(
                 width: 380,
-                height: 25,
                 child: Text(
-                  'Code has been send to +1 111 ******99',
+                  'Code has been sent to +1 111 ******99',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Urbanist',
@@ -125,60 +124,10 @@ class _OtpState extends State<Otp> {
                 ),
               ),
               const SizedBox(height: 60),
-
-              // OTP container
-              Container(
-                width: 380,
-                height: 61,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(4, (index) {
-                    return Container(
-                      width: 83,
-                      height: 61,
-                      padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 1),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Center(
-                        child: TextField(
-                          controller: _controllers[index],
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.number,
-                          maxLength: 1,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          decoration: const InputDecoration(
-                            counterText: "",
-                            border: InputBorder.none,
-                          ),
-                          onChanged: (value) {
-                            if (value.isNotEmpty && index < 3) {
-                              FocusScope.of(context).nextFocus();
-                            } else if (value.isEmpty && index > 0) {
-                              FocusScope.of(context).previousFocus();
-                            }
-                          },
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-
-              const SizedBox(height: 40),
-
-
-              const SizedBox(height: 20),
-
-              // Countdown timer
+              OtpInput(controllers: _controllers),
+              const SizedBox(height: 80),
               Text(
-                _countdown > 0
-                    ? 'Resend code in $_countdown s'
-                    : 'Resend code',
+                _countdown > 0 ? 'Resend code in $_countdown s' : 'Resend code',
                 style: const TextStyle(
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w500,
@@ -186,9 +135,7 @@ class _OtpState extends State<Otp> {
                   color: Color(0xFF757575),
                 ),
               ),
-
-
-              // Verify button
+              const SizedBox(height: 80),
               SizedBox(
                 width: 380,
                 height: 58,
@@ -199,9 +146,9 @@ class _OtpState extends State<Otp> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    padding: EdgeInsets.symmetric(
-                      vertical: 18 * scaleY,
-                      horizontal: 16 * scaleX,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 18,
+                      horizontal: 16,
                     ),
                   ),
                   child: const Text(
@@ -217,10 +164,85 @@ class _OtpState extends State<Otp> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class OtpInput extends StatefulWidget {
+  final List<TextEditingController> controllers;
+
+  const OtpInput({Key? key, required this.controllers}) : super(key: key);
+
+  @override
+  _OtpInputState createState() => _OtpInputState();
+}
+
+class _OtpInputState extends State<OtpInput> {
+  late final List<FocusNode> _focusNodes;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNodes = List.generate(4, (_) => FocusNode());
+  }
+
+  @override
+  void dispose() {
+    for (var node in _focusNodes) {
+      node.dispose();
+    }
+    super.dispose();
+  }
+
+  void _onChanged(String value, int index) {
+    if (value.length == 1 && index < 3) {
+      _focusNodes[index + 1].requestFocus();
+    } else if (value.isEmpty && index > 0) {
+      _focusNodes[index - 1].requestFocus();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 380,
+      height: 61,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(4, (index) {
+          return Container(
+            width: 83,
+            height: 61,
+            decoration: BoxDecoration(
+              color: _focusNodes[index].hasFocus ? Colors.lightGreen[100] : Colors.grey[200],
+              border: Border.all(
+                width: 1,
+                color: _focusNodes[index].hasFocus ? Colors.orange : Colors.black12,
+              ),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Center(
+              child: TextField(
+                controller: widget.controllers[index],
+                focusNode: _focusNodes[index],
+                maxLength: 1,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 24),
+                decoration: const InputDecoration(
+                  counterText: "",
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
+                onChanged: (value) => _onChanged(value, index),
+              ),
+            ),
+          );
+        }),
       ),
     );
   }
